@@ -1,0 +1,27 @@
+{
+    "name": "The Beginning",
+    "routes": [
+        {
+            "rooms": [
+                {
+                    "id": "basement",
+                    "direction": "SW"
+                }, 
+                {
+                    "id": "entrence",
+                    "direction": "NE"
+                }
+            ]
+        }
+    ],
+    "rooms": [
+        {
+            "id": "basement",
+            "displayName": "#rooms.basement"
+        },
+        {
+            "id": "entrence",
+            "displayName": "Entrance"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "firstMap": "map1",
+    "maps": [
+        "map1"
+    ],
+    "fallbackLang": ["en"],
+    "languages": [
+        "en"
+    ]
+}
