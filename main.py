@@ -1,7 +1,7 @@
 import os.path
 import json
 import warnings
-import colorama
+import time
 
 # check if neccesary files are available
 if not os.path.exists("map"):
@@ -55,8 +55,19 @@ def formatText(text: str):
         "7": "\x1b[2m",
         "9": "\x1b[34m",
         "a": "\x1b[92m"
-
     }
-
-print(colorama.Fore.GREEN + "He██llo")
-print(colorama.Fore.LIGHTGREEN_EX + "He██llo")
+def getWidth():
+    return os.get_terminal_size()[0]
+def getHeight():
+    return os.get_terminal_size()[1]
+print("sadads")
+print("asdasd")
+print("ssdasdasdadads")
+print("sadökjkweds")
+print("\rloves", end="", flush=True)
+print("sadökjkweds")
+print('\x1b[1K\r*asd')
+print("sadökjkweds")
+# Main Loop
+# while True:
+#     time.sleep(1)

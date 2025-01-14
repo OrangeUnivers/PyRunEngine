@@ -17,11 +17,16 @@
     "rooms": [
         {
             "id": "basement",
-            "displayName": "#rooms.basement"
+            "displayName": "#rooms.basement",
+            "items": [],
+            "entities": []
         },
         {
             "id": "entrence",
-            "displayName": "Entrance"
+            "displayName": "Entrance",
+            "items": [],
+            "entities": []
         }
-    ]
+    ],
+    "entities": []
 }
