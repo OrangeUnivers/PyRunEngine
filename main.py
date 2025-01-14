@@ -2,6 +2,7 @@ import os.path
 import json
 import warnings
 import time
+import math
 
 # check if neccesary files are available
 if not os.path.exists("map"):
@@ -56,18 +57,75 @@ def formatText(text: str):
         "9": "\x1b[34m",
         "a": "\x1b[92m"
     }
-def getWidth():
-    return os.get_terminal_size()[0]
-def getHeight():
-    return os.get_terminal_size()[1]
+def getWidth(percentage: float = None) -> int:
+    if percentage:
+        return int(os.get_terminal_size()[0] // percentage)
+    return int(os.get_terminal_size()[0])
+def getHeight(percentage: float = None) -> int:
+    if percentage:
+        return int(os.get_terminal_size()[1] // percentage)
+    return int(os.get_terminal_size()[1])
 print("sadads")
+# def printer(x = 1):
+#     for i in range(x):
+#         print("                                                                                                                                                                                           ")
+
+# def overwrite(lines = int):
+#     print("\033[" + str(lines) + "A",end="\x1b[2K")
+#     printer(lines)
+#     print("\033[" + str(lines) + "A",end="\x1b[2K")
+# print("Welcome to Invest")
+# print("In Invest you could look if you could live a life on where you are relieing completly on investing i cryptocurrentcys")
+# printer()
+# input("> ")
+# overwrite(4)
+# input()
 print("asdasd")
-print("ssdasdasdadads")
+print("ssdasdasdadads", end="\r")
 print("sadökjkweds")
 print("\rloves", end="", flush=True)
 print("sadökjkweds")
 print('\x1b[1K\r*asd')
 print("sadökjkweds")
 # Main Loop
-# while True:
-#     time.sleep(1)
+firstRun = True
+lastSizeX = None
+lastSizeY = None
+savedPositions = {"x": [], "y": []}
+while True:
+    if not firstRun:
+        print("\033[" + str(lastSizeY) + "A", end="\x1b[2K")
+        for i in range(lastSizeY):
+            print(" " * lastSizeX)
+        print("\033[" + str(lastSizeY) + "A", end="\x1b[2K")
+    else:
+        firstRun = False
+    lastSizeX = getWidth()
+    lastSizeY = getHeight()
+    savedPositions["x"].append(getWidth())
+    savedPositions["y"].append(getHeight())
+    # for i in range(int(round(((getHeight() - round((getHeight() / 1.7) - 2, 0)) / 2), 0))):
+    #     print("")
+    # print(str(" "*(int(round(((getWidth() - round((getWidth() / 1.7) - 2, 0)) / 2), 0)))) + "╭" + str("─" * int(round((getWidth() / 1.7) - 2, 0))) + "╮")
+    # for i in range(int(round((getHeight() / 1.7) - 2, 0))):
+    #     print(str(" "*(int(round(((getWidth() - round((getWidth() / 1.7) - 2, 0)) / 2), 0)))) + "│" + str(" " * int(round((getWidth() / 1.7) - 2, 0))) + "│")
+    # print(str(" "*(int(round(((getWidth() - round((getWidth() / 1.7) - 2, 0)) / 2), 0)))) + "╰" + str("─" * int(round((getWidth() / 1.7) - 2, 0))) + "╯")
+    # for i in range(int(round(((getHeight() - round((getHeight() / 1.7) - 2, 0)) / 2), 0))):
+    #     print("")
+    for i in range((getHeight() - getHeight(1.7) - 2) // 2):
+        print("")
+    print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "╭" + str("─" * (getWidth(1.7) - 2)) + "╮")
+    for i in range(getHeight(1.7)):
+        print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + str(" " * (getWidth(1.7) - 2)) + "│")
+    print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "╰" + str("─" * (getWidth(1.7) - 2)) + "╯")
+    for i in range((getHeight() - getHeight(1.7) - 2) // 2 + (0 if (getHeight() - getHeight(1.7) - 2) % 2 == 0 else 1) - 1):
+        print("")
+    userInput = input(" > ")
+    match userInput:
+        case "refresh":
+            continue
+        case "debug":
+            print("Xs: " + ", ".join(str(x) for x in savedPositions["x"]) + "; Ys: " + ", ".join(str(y) for y in savedPositions["y"]))
+            break
+        case "exit":
+            break

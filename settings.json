@@ -6,5 +6,6 @@
     "fallbackLang": ["en"],
     "languages": [
         "en"
-    ]
+    ],
+    "minSceneSize": [200, 120]
 }
