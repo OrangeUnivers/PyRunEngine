@@ -114,18 +114,17 @@ while True:
     #     print("")
     for i in range((getHeight() - getHeight(1.7) - 2) // 2):
         print("")
-    print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "╭" + str("─" * (getWidth(1.7) - 2)) + "╮")
+    print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "╭" + str("─" * getWidth(1.7)) + "╮")
     for i in range(getHeight(1.7)):
-        print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + str(" " * (getWidth(1.7) - 2)) + "│")
-    print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "╰" + str("─" * (getWidth(1.7) - 2)) + "╯")
+        print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + str(" " * getWidth(1.7)) + "│")
+    print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "╰" + str("─" * getWidth(1.7)) + "╯")
     for i in range((getHeight() - getHeight(1.7) - 2) // 2 + (0 if (getHeight() - getHeight(1.7) - 2) % 2 == 0 else 1) - 1):
         print("")
     userInput = input(" > ")
-    match userInput:
-        case "refresh":
-            continue
-        case "debug":
-            print("Xs: " + ", ".join(str(x) for x in savedPositions["x"]) + "; Ys: " + ", ".join(str(y) for y in savedPositions["y"]))
-            break
-        case "exit":
-            break
+    if userInput == "exit":
+        break
+    elif userInput == "refresh":
+        continue
+    elif userInput == "debug":
+        print("Xs: " + ", ".join(str(x) for x in savedPositions["x"]) + "; Ys: " + ", ".join(str(y) for y in savedPositions["y"]))
+        break
