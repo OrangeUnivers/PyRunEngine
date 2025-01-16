@@ -110,6 +110,14 @@ while True:
     # print(str(" "*(int(round(((getWidth() - round((getWidth() / 1.7) - 2, 0)) / 2), 0)))) + "╰" + str("─" * int(round((getWidth() / 1.7) - 2, 0))) + "╯")
     # for i in range(int(round(((getHeight() - round((getHeight() / 1.7) - 2, 0)) / 2), 0))):
     #     print("")
+    print(settings["minSceneSize"][0] > getWidth(1.7))
+    print(getHeight(1.7) >= settings["minSceneSize"][1])
+    print(getHeight(1.7))
+    print(settings["minSceneSize"][1])
+    if settings["minSceneSize"][0] > getWidth(1.7) and getHeight(1.7) >= settings["minSceneSize"][1]:
+        for i in range(getHeight()-1):
+            print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + str(" " * getWidth(1.7)) + "│")
+        input("? ")
     for i in range((getHeight() - getHeight(1.7) - 2) // 2):
         print(" " * getWidth())
     print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "╭" + str("─" * getWidth(1.7)) + "╮")
@@ -126,21 +134,3 @@ while True:
     elif userInput == "debug":
         print("Xs: " + ", ".join(str(x) for x in savedPositions["x"]) + "; Ys: " + ", ".join(str(y) for y in savedPositions["y"]))
         break
-
-
-# -
-
-
-
-#                                                     ╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-#                                                     │   
-# -
-
-# +
-                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                             
-                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                              
-# +
