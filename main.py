@@ -80,26 +80,24 @@ print("sadads")
 # input("> ")
 # overwrite(4)
 # input()
-print("asdasd")
-print("ssdasdasdadads", end="\r")
-print("sadökjkweds")
-print("\rloves", end="", flush=True)
-print("sadökjkweds")
-print('\x1b[1K\r*asd')
-print("sadökjkweds")
+while True:
+    print("This program will remove eveything in the command history of this session. Do you want to open anyways? (Y/n)")
+    userInput = input("- ")
+    if userInput == "n" or userInput == "N":
+        exit()
+    elif userInput == "y" or userInput == "Y":
+        break
+    print("\033[2A", end="\x1b[2K")
+    print("")
+    print(" "* (2+len(userInput)))
+    print("\033[2A", end="\x1b[2K")
 # Main Loop
 firstRun = True
 lastSizeX = None
 lastSizeY = None
 savedPositions = {"x": [], "y": []}
 while True:
-    if not firstRun:
-        print("\033[" + str(lastSizeY) + "A", end="\x1b[2K")
-        for i in range(lastSizeY):
-            print(" " * lastSizeX)
-        print("\033[" + str(lastSizeY) + "A", end="\x1b[2K")
-    else:
-        firstRun = False
+    os.system('cls' if os.name == 'nt' else 'clear')
     lastSizeX = getWidth()
     lastSizeY = getHeight()
     savedPositions["x"].append(getWidth())
@@ -113,7 +111,7 @@ while True:
     # for i in range(int(round(((getHeight() - round((getHeight() / 1.7) - 2, 0)) / 2), 0))):
     #     print("")
     for i in range((getHeight() - getHeight(1.7) - 2) // 2):
-        print("")
+        print(" " * getWidth())
     print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "╭" + str("─" * getWidth(1.7)) + "╮")
     for i in range(getHeight(1.7)):
         print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + str(" " * getWidth(1.7)) + "│")
@@ -128,3 +126,21 @@ while True:
     elif userInput == "debug":
         print("Xs: " + ", ".join(str(x) for x in savedPositions["x"]) + "; Ys: " + ", ".join(str(y) for y in savedPositions["y"]))
         break
+
+
+# -
+
+
+
+#                                                     ╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+#                                                     │   
+# -
+
+# +
+                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                              
+# +
