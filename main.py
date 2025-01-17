@@ -65,21 +65,8 @@ def getHeight(percentage: float = None) -> int:
     if percentage:
         return int(os.get_terminal_size()[1] // percentage)
     return int(os.get_terminal_size()[1])
-print("sadads")
-# def printer(x = 1):
-#     for i in range(x):
-#         print("                                                                                                                                                                                           ")
-
-# def overwrite(lines = int):
-#     print("\033[" + str(lines) + "A",end="\x1b[2K")
-#     printer(lines)
-#     print("\033[" + str(lines) + "A",end="\x1b[2K")
-# print("Welcome to Invest")
-# print("In Invest you could look if you could live a life on where you are relieing completly on investing i cryptocurrentcys")
-# printer()
-# input("> ")
-# overwrite(4)
-# input()
+def textCenter(text: str = "", space: int = 10) -> str:
+    return (" " * ((space - len(text))//2)) + text + (" " * ((space - len(text)) - ((space - len(text))//2)))
 while True:
     print("This program will remove eveything in the command history of this session. Do you want to open anyways? (Y/n)")
     userInput = input("- ")
@@ -102,23 +89,13 @@ while True:
     lastSizeY = getHeight()
     savedPositions["x"].append(getWidth())
     savedPositions["y"].append(getHeight())
-    # for i in range(int(round(((getHeight() - round((getHeight() / 1.7) - 2, 0)) / 2), 0))):
-    #     print("")
-    # print(str(" "*(int(round(((getWidth() - round((getWidth() / 1.7) - 2, 0)) / 2), 0)))) + "╭" + str("─" * int(round((getWidth() / 1.7) - 2, 0))) + "╮")
-    # for i in range(int(round((getHeight() / 1.7) - 2, 0))):
-    #     print(str(" "*(int(round(((getWidth() - round((getWidth() / 1.7) - 2, 0)) / 2), 0)))) + "│" + str(" " * int(round((getWidth() / 1.7) - 2, 0))) + "│")
-    # print(str(" "*(int(round(((getWidth() - round((getWidth() / 1.7) - 2, 0)) / 2), 0)))) + "╰" + str("─" * int(round((getWidth() / 1.7) - 2, 0))) + "╯")
-    # for i in range(int(round(((getHeight() - round((getHeight() / 1.7) - 2, 0)) / 2), 0))):
-    #     print("")
-    print(settings["minSceneSize"][0] > getWidth(1.7))
-    print(getHeight(1.7) >= settings["minSceneSize"][1])
-    print(getHeight(1.7))
-    print(settings["minSceneSize"][1])
     if settings["minSceneSize"][0] > getWidth(1.7) and getHeight(1.7) >= settings["minSceneSize"][1]:
         for i in range((getHeight() - getHeight(1.7) - 2) // 2):
             print("")
         print(str("─" * getWidth()))
-        for i in range(getHeight(1.7)):
+        for i in range(((getHeight(1.7)) // 2)):
+            print("")
+        for i in range((getHeight(1.7))):
             print("")
         print(str("─" * getWidth()))
         for i in range((getHeight() - getHeight(1.7) - 2) // 2):
@@ -126,24 +103,16 @@ while True:
         input("? ")
         continue
     if settings["minSceneSize"][1] > getHeight(1.7) and getWidth(1.7) >= settings["minSceneSize"][0]:
-        for i in range(getHeight()-1):
+        for i in range((getHeight()-2) // 2):
+            print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + str(" " * getWidth(1.7)) + "│")
+        print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + textCenter("Your Screen is too small", getWidth(1.7)) + "│")
+        for i in range((getHeight())-((getHeight()-2) // 2)- 2):
             print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + str(" " * getWidth(1.7)) + "│")
         input("? ")
         continue
-    if settings["minSceneSize"][0] > getWidth(1.7) and getHeight(1.7) >= settings["minSceneSize"][1]:
-        for i in range((getHeight() - getHeight(1.7) - 2) // 2):
+    if settings["minSceneSize"][0] > getWidth(1.7) and settings["minSceneSize"][1] > getHeight(1.7):
+        for i in range(getHeight() - 1):
             print("")
-        print(str("─" * getWidth()))
-        for i in range(getHeight(1.7)):
-            print("")
-        print(str("─" * getWidth()))
-        for i in range((getHeight() - getHeight(1.7) - 2) // 2):
-            print("")
-        input("? ")
-        continue
-    if settings["minSceneSize"][1] > getHeight(1.7) and getWidth(1.7) > settings["minSceneSize"][0]:
-        for i in range(getHeight()-1):
-            print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + str(" " * getWidth(1.7)) + "│")
         input("? ")
         continue
     for i in range((getHeight() - getHeight(1.7) - 2) // 2):
@@ -161,4 +130,5 @@ while True:
         continue
     elif userInput == "debug":
         print("Xs: " + ", ".join(str(x) for x in savedPositions["x"]) + "; Ys: " + ", ".join(str(y) for y in savedPositions["y"]))
+        print(textCenter("hello", getWidth()))
         break
