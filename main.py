@@ -57,12 +57,20 @@ def formatText(text: str):
         "9": "\x1b[34m",
         "a": "\x1b[92m"
     }
-def getWidth(percentage: float = None) -> int:
+def getWidth(percentage: float = None, simple: bool = False) -> int:
     if percentage:
+        if os.get_terminal_size()[0] < settings["minSceneSize"][0]:
+            return os.get_terminal_size()[0]
+        if int(os.get_terminal_size()[0] // percentage) < settings["minSceneSize"][0]:
+            return settings["minSceneSize"][0]
         return int(os.get_terminal_size()[0] // percentage)
     return int(os.get_terminal_size()[0])
-def getHeight(percentage: float = None) -> int:
+def getHeight(percentage: float = None, simple: bool = False) -> int:
     if percentage:
+        if os.get_terminal_size()[1] < settings["minSceneSize"][1]:
+            return os.get_terminal_size()[1]
+        if int(os.get_terminal_size()[1] // percentage) < settings["minSceneSize"][1]:
+            return settings["minSceneSize"][1]
         return int(os.get_terminal_size()[1] // percentage)
     return int(os.get_terminal_size()[1])
 def textCenter(text: str = "", space: int = 10) -> str:
@@ -89,31 +97,39 @@ while True:
     lastSizeY = getHeight()
     savedPositions["x"].append(getWidth())
     savedPositions["y"].append(getHeight())
-    if settings["minSceneSize"][0] > getWidth(1.7) and getHeight(1.7) >= settings["minSceneSize"][1]:
+    print(settings["minSceneSize"][0])
+    print(settings["minSceneSize"][1])
+    print(getWidth(1.7))
+    print(getHeight(1.7))
+    if settings["minSceneSize"][0] > (getWidth(1.7) + 1) and (getHeight(1.7) + 1) >= settings["minSceneSize"][1]:
         for i in range((getHeight() - getHeight(1.7) - 2) // 2):
             print("")
         print(str("─" * getWidth()))
-        for i in range(((getHeight(1.7)) // 2)):
+        for i in range(((getHeight(1.7)-1) // 2)):
             print("")
-        for i in range((getHeight(1.7))):
+        print(textCenter("Your screen is too small", getWidth()))
+        for i in range((getHeight(1.7) - 1) - ((getHeight(1.7)-1) // 2)):
             print("")
         print(str("─" * getWidth()))
         for i in range((getHeight() - getHeight(1.7) - 2) // 2):
             print("")
-        input("? ")
+        input("")
         continue
-    if settings["minSceneSize"][1] > getHeight(1.7) and getWidth(1.7) >= settings["minSceneSize"][0]:
+    if settings["minSceneSize"][1] > (getHeight(1.7) + 1) and (getWidth(1.7) + 1) >= settings["minSceneSize"][0]:
         for i in range((getHeight()-2) // 2):
             print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + str(" " * getWidth(1.7)) + "│")
-        print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + textCenter("Your Screen is too small", getWidth(1.7)) + "│")
+        print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + textCenter("Your screen is too small", getWidth(1.7)) + "│")
         for i in range((getHeight())-((getHeight()-2) // 2)- 2):
             print(str(" "*((getWidth() - getWidth(1.7) - 1) // 2)) + "│" + str(" " * getWidth(1.7)) + "│")
-        input("? ")
+        input("")
         continue
-    if settings["minSceneSize"][0] > getWidth(1.7) and settings["minSceneSize"][1] > getHeight(1.7):
-        for i in range(getHeight() - 1):
+    if settings["minSceneSize"][0] > (getWidth(1.7) + 1) and settings["minSceneSize"][1] > (getHeight(1.7) + 1):
+        for i in range((getHeight() - 2) // 2):
             print("")
-        input("? ")
+        print(textCenter("Your screen is too small", getWidth()))
+        for i in range((getHeight() - 2) - ((getHeight() - 2) // 2)):
+            print("")
+        input("")
         continue
     for i in range((getHeight() - getHeight(1.7) - 2) // 2):
         print(" " * getWidth())
